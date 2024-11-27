@@ -1,12 +1,10 @@
 {
   "name": "test_explore_movies",
   "version": "1.0.0",
-  "description": "Running Cypress end-to-end tests for the explore movies",
+  "description": "Running Cypress end-to-end tests for Explore movies",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "start": "http-server",
-    "test": "cypress run"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

@@ -3,7 +3,7 @@ describe('Test movie page', () => {
     cy.visit('https://movies.mariemrzz.site/')
     cy.getDataTestId('genresId').select('Fantasy')
   })
-  it('Verify a film is found by the selected genre, also check all films elements', () => {
+  it('Verify a film is found by the selected genre and contains all necessary elements', () => {
     cy.intercept({
       'method': 'GET',
       'url': 'https://api-movies.mariemrzz.site/3/discover/movie?with_genres=*'
@@ -18,5 +18,10 @@ describe('Test movie page', () => {
           .should((value) => expect(film.genre_ids).include(Number(value)))
       })
     })
+    cy.getId('moviePoster').find('img').should('have.attr', 'src').should('include','https://image.tmdb.org/')
+    cy.contains('span', /^(10(?:\.0+)?|[0-9](?:\.\d+)?)$/i).should('exist')
+    cy.getDataTestId('movieOverviewId').find('p').should('contains.text', 'Description')
+    cy.getId('likeBtn').should('have.text', '👍')
+    cy.getId('dislikeBtn').should('have.text', '👎')
   })
 })
